@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrimp Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px 0;
+        }
+        #photo-container {
+            margin-top: 20px;
+        }
+        #photo {
+            width: 90%;
+            max-width: 400px;
+            display: block;
+            margin: 0 auto;
+        }
+        #question {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 18px; /* Increased font size for better visibility */
+            padding: 15px 30px; /* Increased padding for easier tapping */
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px; /* Increased border radius for better aesthetics */
+            background-color: #007bff;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        /* Video overlay */
+        #video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio (Responsive for videos) */
+        }
+        #video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #video-overlay, #bottom-text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 24px; /* Adjusted font size for better visibility */
+            font-weight: bold;
+        }
+        #video-overlay {
+            top: 10%;
+        }
+        #bottom-text {
+            bottom: 10%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shrimp Detector</h1>
+    </header>
+    <div id="photo-container">
+        <img id="photo" src="photo.jpg" alt="Initial Photo">
+        <div id="buttons">
+            <button id="startButton">Start Detection</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("startButton").addEventListener("click", function() {
+            document.getElementById("photo").src = "photo2.png";
+            document.getElementById("buttons").innerHTML = `
+                <div id="question">
+                    <p>Are you shrimp?</p>
+                    <button id="yesButton">Yes</button>
+                    <button id="noButton">No</button>
+                </div>
+            `;
+            document.getElementById("yesButton").addEventListener("click", function() {
+                playVideo("testvideo.mp4");
+            });
+            document.getElementById("noButton").addEventListener("click", function() {
+                playVideo("testvideo.mp4");
+            });
+        });
+
+        function playVideo(videoSrc) {
+            document.body.innerHTML = `
+                <div id="video-container">
+                    <video src="${videoSrc}" autoplay loop></video>
+                    <div id="video-overlay">SHRIMP</div>
+                    <div id="bottom-text">SHRIMP</div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
